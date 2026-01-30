@@ -1,0 +1,5 @@
+﻿  Game.cpp
+C:\Users\gamejam\Desktop\Staged\Staged\Game.cpp(113,28): warning C4100: 't_deltaTime': unreferenced parameter
+  main.cpp
+  Generating Code...
+  Staged.vcxproj -> C:\Users\gamejam\Desktop\Staged\Debug\Staged.exe
