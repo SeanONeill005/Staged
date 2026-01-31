@@ -52,4 +52,11 @@ private:
 	sf::Time elapsedTime = sf::seconds(0);
 
 	bool gameCompleted = false;
+
+	int score = 0;
+	sf::Font scoreFont{ "ASSETS/FONTS/Jersey20-Regular.ttf" };
+	sf::Text scoreText{ scoreFont };
+
+	sf::Time endTimer = sf::seconds(20);
+	sf::Clock gameTimer;
 };
