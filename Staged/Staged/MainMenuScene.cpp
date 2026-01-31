@@ -21,7 +21,7 @@ void MainMenuScene::processEvents()
 	if (playPressed)
 	{
 		playPressed = false;
-		SceneManager::getInstance()->setScene(SceneType::GAMEPLAY);
+		SceneManager::getInstance()->setScene(SceneType::CHEST);
 	}
 }
 

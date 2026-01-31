@@ -37,6 +37,10 @@ void ChestScene::processEvents()
 		else if (e->is<sf::Event::KeyPressed>()) { processKeys(e); }
 		else if (e->is<sf::Event::MouseButtonPressed>()) { processClick(e); }
 	}
+	if (m_changeScene) {
+		SceneManager::getInstance()->setScene(m_changeSceneTo);
+		m_changeScene = false;
+	}
 }
 
 void ChestScene::processClick(const std::optional<sf::Event> t_event)
@@ -56,8 +60,19 @@ void ChestScene::processClick(const std::optional<sf::Event> t_event)
 
 	for (size_t i = 0; i < m_masks.size(); ++i) {
 		if (isClicked(m_masks[i])) {
-			std::cout << "Clicked mask " << (i + 1) << std::endl;
-			break;
+			m_changeScene = true;
+
+			switch (i) {
+			case 0:
+				m_changeSceneTo = SceneType::GAMEPLAY;
+				break;
+			case 1:
+				m_changeSceneTo = SceneType::CIRCUS;
+				break;
+			case 2:
+				// action for the 3rd mask
+				break;
+			}
 		}
 	}
 }
