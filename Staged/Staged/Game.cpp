@@ -15,7 +15,7 @@ void Game::run()
 	sceneManager->registerScene<ChestScene>(SceneType::CHEST);
 	//sceneManager->registerScene<GameOverScene>(SceneType::GAME_OVER);
 
-	sceneManager->setScene(SceneType::MAIN_MENU);
+	sceneManager->setScene(SceneType::CIRCUS);
 
 	sf::Clock clock;
 	sf::Time lag = sf::Time::Zero;
