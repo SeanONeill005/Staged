@@ -25,4 +25,11 @@ private:
 	sf::RectangleShape playButton;
 	sf::RectangleShape exitButton;
 	bool playPressed = false;
+
+	sf::Font textFont{ "ASSETS/FONTS/Jersey20-Regular.ttf" };
+	sf::Text playText{ textFont };
+	sf::Text exitText{ textFont };
+
+	sf::Texture backgroundTexture{ "ASSETS/IMAGES/TheatreBackground.png" };
+	sf::Sprite backgroundSprite{ backgroundTexture };
 };

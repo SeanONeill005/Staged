@@ -52,8 +52,12 @@ void MainMenuScene::update(sf::Time t_dT)
 void MainMenuScene::render()
 {
 	m_window->clear(sf::Color::White);
+	m_window->draw(backgroundSprite);
 	m_window->draw(playButton);
 	m_window->draw(exitButton);
+	m_window->draw(playText);
+	m_window->draw(exitText);
+	
 	m_window->display();
 }
 
@@ -63,9 +67,18 @@ void MainMenuScene::setupButtons()
 	playButton.setFillColor(sf::Color{ 10, 10, 10 });
 	playButton.setOrigin(sf::Vector2f{ playButton.getSize().x / 2, playButton.getSize().y / 2 });
 	playButton.setPosition(sf::Vector2f{ WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 });
+	playText.setString("Play Game");
+	playText.setFillColor(sf::Color::White);
+	playText.setCharacterSize(75);
+	playText.setPosition(playButton.getPosition());
+	playText.setPosition(sf::Vector2f(playButton.getPosition().x - 135, playButton.getPosition().y - 50));
 
 	exitButton.setSize(sf::Vector2f{ 400.0f, 200.0f });
 	exitButton.setFillColor(sf::Color{ 10, 10, 10, });
 	exitButton.setOrigin(sf::Vector2f{ exitButton.getSize().x / 2, exitButton.getSize().y / 2 });
 	exitButton.setPosition(sf::Vector2f{ playButton.getPosition().x, playButton.getPosition().y + 300 });
+	exitText.setString("Quit Game");
+	exitText.setFillColor(sf::Color::White);
+	exitText.setCharacterSize(75);
+	exitText.setPosition(sf::Vector2f{ exitButton.getPosition().x - 135, exitButton.getPosition().y - 50 });
 }
