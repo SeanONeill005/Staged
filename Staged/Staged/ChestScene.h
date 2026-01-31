@@ -33,4 +33,7 @@ private:
 	sf::CircleShape m_mask3;
 
 	std::array<sf::CircleShape*, 3> m_masks;
+
+	bool m_changeScene{ false };
+	SceneType m_changeSceneTo;
 };

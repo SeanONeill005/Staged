@@ -24,6 +24,7 @@
     <ClCompile Include="ChestScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameplayScene.cpp" />
+    <ClCompile Include="JugglingBall.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MainMenuScene.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="CircusScene.h" />
+    <ClInclude Include="JugglingBall.h" />
     <ClInclude Include="Mask.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="SceneManager.h" />
