@@ -50,4 +50,6 @@ private:
 
 	sf::Time maxTime = sf::seconds(5);
 	sf::Time elapsedTime = sf::seconds(0);
+
+	bool gameCompleted = false;
 };
