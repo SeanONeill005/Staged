@@ -59,4 +59,7 @@ private:
 
 	sf::Time endTimer = sf::seconds(20);
 	sf::Clock gameTimer;
+
+	sf::Texture playerTexture{ "ASSETS/IMAGES/CowboyPose1.png" };
+	sf::Sprite playerSprite{ playerTexture };
 };
