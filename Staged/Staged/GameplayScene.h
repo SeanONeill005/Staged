@@ -54,7 +54,7 @@ private:
 	bool gameCompleted = false;
 
 	int score = 0;
-	sf::Font scoreFont{ "ASSETS/FONTS/Jersey20-Regular.ttf" };
+	sf::Font scoreFont{ "ASSETS/FONTS/NeonLight-Regular.ttf" };
 	sf::Text scoreText{ scoreFont };
 
 	sf::Time endTimer = sf::seconds(20);

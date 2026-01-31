@@ -127,9 +127,9 @@ void GameplayScene::setupSprites()
 	stage.setSceneDimensions();
 	clicker.setOrigin(sf::Vector2f{ 25.0f, 25.0f });
 
-	scoreText.setCharacterSize(50);
-	scoreText.setFillColor(sf::Color::Yellow);
-	scoreText.setPosition(sf::Vector2f{ 10.0f, 10.0f });
+	scoreText.setCharacterSize(100);
+	scoreText.setFillColor(sf::Color::Black);
+	scoreText.setPosition(sf::Vector2f{ 10.0f, 970.0f });
 
 	playerSprite.setPosition(sf::Vector2f{ WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 });
 	playerSprite.setScale(sf::Vector2f{.2f, .2f});
