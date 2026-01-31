@@ -1,5 +1,9 @@
-﻿  Game.cpp
-C:\Users\gamejam\Desktop\Staged\Staged\Game.cpp(113,28): warning C4100: 't_deltaTime': unreferenced parameter
-  main.cpp
-  Generating Code...
-  Staged.vcxproj -> C:\Users\gamejam\Desktop\Staged\Debug\Staged.exe
+﻿  Mask.cpp
+C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Mask.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\stdexcept(100,30):
+      see declaration of 'std::runtime_error'
+      C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Staged.vcxproj -> C:\Users\gamejam\Desktop\mkdir\Staged\Debug\Staged.exe

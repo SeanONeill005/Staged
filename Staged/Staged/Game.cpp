@@ -17,7 +17,7 @@
 /// load and setup the sounds
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ sf::Vector2u{800U, 600U}, 32U }, "SFML Game 3.0" },
+	m_window{ sf::VideoMode{ sf::Vector2u{1920U, 1080U}, 32U }, "SFML Game 3.0" },
 	m_DELETEexitGame{false} //when true game will exit
 {
 	setupTexts(); // load font 
@@ -49,6 +49,7 @@ void Game::run()
 	sf::Time timePerFrame = sf::seconds(1.0f / fps); // 60 fps
 	while (m_window.isOpen())
 	{
+		printMaskType();
 		processEvents(); // as many as possible
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > timePerFrame)
@@ -124,11 +125,11 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(ULTRAMARINE);
+	m_window.draw(m_backgroundSprite);
 
-	m_window.draw(m_DELETElogoSprite);
-	m_window.draw(m_DELETEwelcomeMessage);
-	
+	m_window.draw(scene.getSceneSprite());
+	m_window.draw(mask.getMaskSprite());
+
 	m_window.display();
 }
 
@@ -156,14 +157,14 @@ void Game::setupTexts()
 /// </summary>
 void Game::setupSprites()
 {
-	if (!m_DELETElogoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	if (!m_backgroundTexture.loadFromFile("ASSETS\\IMAGES\\TheatreBackground.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
-	
-	m_DELETElogoSprite.setTexture(m_DELETElogoTexture,true);// to reset the dimensions of texture
-	m_DELETElogoSprite.setPosition(sf::Vector2f{ 150.0f, 50.0f });
+	m_backgroundSprite.setTexture(m_backgroundTexture,true);// to reset the dimensions of texture
+	mask.setMaskDimensions();
+	scene.setSceneDimensions();
 }
 
 /// <summary>
@@ -176,4 +177,11 @@ void Game::setupAudio()
 		std::cout << "Error loading beep sound" << std::endl;
 	}
 	m_DELETEsound.play(); // test sound
+}
+
+void Game::printMaskType()
+{
+	std::cout << mask.getMaskType() << "\n";
+	std::cout << scene.getSceneType() << "\n";
+
 }
