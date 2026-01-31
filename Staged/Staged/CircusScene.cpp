@@ -23,6 +23,9 @@ void CircusScene::processEvents()
 		else if (e->is<sf::Event::KeyPressed>()) { processKeys(e); }
 		else if (e->is<sf::Event::MouseButtonPressed>()) { processClick(e); }
 	}
+	if (m_changeScene) {
+		SceneManager::getInstance()->setScene(m_changeSceneTo);
+	}
 }
 
 void CircusScene::processClick(const std::optional<sf::Event> t_event)
@@ -52,6 +55,11 @@ void CircusScene::update(sf::Time t_dT)
 		if (ball.isDropped()) {
 			m_droppedBalls++;
 			std::cout << "You dropped the ball :(" << std::endl;
+
+			if (m_droppedBalls >= 3) {
+				m_changeScene = true;
+				m_changeSceneTo = SceneType::GAME_OVER;
+			}
 		}
 	}
 

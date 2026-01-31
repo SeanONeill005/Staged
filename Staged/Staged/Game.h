@@ -12,6 +12,8 @@
 #include "ChestScene.h"
 #include "SceneManager.h"
 #include "MainMenuScene.h"
+#include "GameOverScene.h"
+
 class Game
 {
 public:
