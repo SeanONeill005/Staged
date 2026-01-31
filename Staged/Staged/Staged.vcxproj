@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="BoatScene.cpp" />
     <ClCompile Include="CircusScene.cpp" />
+    <ClCompile Include="ChestScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BoatScene.h" />
+    <ClInclude Include="ChestScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="Globals.h" />
