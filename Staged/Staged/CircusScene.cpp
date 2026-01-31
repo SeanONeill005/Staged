@@ -48,7 +48,21 @@ void CircusScene::update(sf::Time t_dT)
 {
 	for (auto& ball : m_jugglingBalls) {
 		ball.update(t_dT);
+
+		if (ball.isDropped()) {
+			m_droppedBalls++;
+			std::cout << "You dropped the ball :(" << std::endl;
+		}
 	}
+
+	m_jugglingBalls.erase(
+		std::remove_if(m_jugglingBalls.begin(), m_jugglingBalls.end(),
+			[](const JugglingBall& ball) {
+				return ball.isDropped();
+			}),
+		m_jugglingBalls.end()
+	);
+
 
 	m_elapsedTime += t_dT;
 
