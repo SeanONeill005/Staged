@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoatScene.cpp" />
+    <ClCompile Include="CircusScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -29,9 +31,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseScene.h" />
+    <ClInclude Include="BoatScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameplayScene.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="CircusScene.h" />
     <ClInclude Include="Mask.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="SceneManager.h" />

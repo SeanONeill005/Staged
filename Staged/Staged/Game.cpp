@@ -10,6 +10,8 @@ void Game::run()
 
 	sceneManager->registerScene<MainMenuScene>(SceneType::MAIN_MENU);
 	sceneManager->registerScene<GameplayScene>(SceneType::GAMEPLAY);
+	sceneManager->registerScene<CircusScene>(SceneType::CIRCUS);
+	sceneManager->registerScene<BoatScene>(SceneType::BOAT);
 	//sceneManager->registerScene<GameOverScene>(SceneType::GAME_OVER);
 
 	sceneManager->setScene(SceneType::MAIN_MENU);
