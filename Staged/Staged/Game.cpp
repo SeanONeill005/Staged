@@ -95,10 +95,10 @@ void Game::processClick(const std::optional<sf::Event> t_event)
 		std::cout << sf::Mouse::getPosition(m_window).x << "\n";
 		std::cout << sf::Mouse::getPosition(m_window).y << "\n";
 
-		if (sf::Mouse::getPosition(m_window).x < clickerMask.getPosition().x + 50 && sf::Mouse::getPosition(m_window).x > clickerMask.getPosition().x &&
-			sf::Mouse::getPosition(m_window).y < clickerMask.getPosition().y + 50 && sf::Mouse::getPosition(m_window).y > clickerMask.getPosition().y)
+		if (sf::Mouse::getPosition(m_window).x < clicker.getPosition().x + clicker.getRadius() && sf::Mouse::getPosition(m_window).x > clicker.getPosition().x - clicker.getRadius() &&
+			sf::Mouse::getPosition(m_window).y < clicker.getPosition().y + clicker.getRadius() && sf::Mouse::getPosition(m_window).y > clicker.getPosition().y - clicker.getRadius())
 		{
-			clickerMask.setRandomPosition();
+			setRandomPosition();
 		}
 	}
 }
@@ -116,7 +116,7 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
-		clickerMask.setRandomPosition();
+		setRandomPosition();
 	}
 
 }
@@ -143,6 +143,19 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	elapsedTime += t_deltaTime;
+	if (elapsedTime > maxTime) {
+		elapsedTime = sf::seconds(0);
+
+		// move the circle
+	}
+
+	
+
+	float radius = (1 - (elapsedTime / maxTime)) * maxRadius;
+	clicker.setRadius(radius);
+
 }
 
 /// <summary>
@@ -157,7 +170,7 @@ void Game::render()
 	//{
 	//	m_window.draw(maskList[index].getMaskSprite());
 	//}
-	m_window.draw(clickerMask.getMaskSprite());
+	m_window.draw(clicker);
 	m_window.display();
 }
 
@@ -195,8 +208,8 @@ void Game::setupSprites()
 	{
 		maskList[index].setMaskDimensions(index);
 	}
-	clickerMask.setMaskDimensions(1);
 	scene.setSceneDimensions();
+	clicker.setOrigin(sf::Vector2f{25.0f, 25.0f});
 }
 
 /// <summary>
@@ -217,4 +230,13 @@ void Game::printMaskType()
 	//std::cout << maskRed.getMaskType() << "\n";
 	//std::cout << scene.getSceneType() << "\n";
 	//std::cout << maskList.size() << "\n";
+}
+
+void Game::setRandomPosition()
+{
+	float posX = rand() % 1880;
+	float posY = rand() % 1030;
+	clicker.setPosition(sf::Vector2f{ posX, posY });
+	clicker.setRadius(maxRadius);
+	elapsedTime = maxTime;
 }

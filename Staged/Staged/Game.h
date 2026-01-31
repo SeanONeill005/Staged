@@ -30,6 +30,8 @@ private:
 	void printMaskType();
 
 	void processClick(const std::optional<sf::Event> t_event);
+
+	void setRandomPosition();
 	
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
@@ -47,7 +49,11 @@ private:
 	Scene scene = "Purple";
 	std::vector<Mask> maskList = { mask, maskRed};
 
-	Mask clickerMask = "ClickerMask";
+	const float maxRadius = 50.f;
+	sf::CircleShape clicker{ 50.0f };
+
+	sf::Time maxTime = sf::seconds( 5 );
+	sf::Time elapsedTime = sf::seconds(0);
 
 };
 
