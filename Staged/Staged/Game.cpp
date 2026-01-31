@@ -42,7 +42,8 @@ Game::~Game()
 /// if updates run slow then don't render frames
 /// </summary>
 void Game::run()
-{	
+{
+	srand(time(NULL));
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const float fps{ 60.0f };
@@ -79,9 +80,28 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if (newEvent->is<sf::Event::MouseButtonPressed>())
+		{
+			processClick(newEvent);
+		}
 	}
 }
 
+void Game::processClick(const std::optional<sf::Event> t_event)
+{
+	const sf::Event::MouseButtonPressed* newMousePress = t_event->getIf<sf::Event::MouseButtonPressed>();
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		std::cout << sf::Mouse::getPosition(m_window).x << "\n";
+		std::cout << sf::Mouse::getPosition(m_window).y << "\n";
+
+		if (sf::Mouse::getPosition(m_window).x < clickerMask.getPosition().x + 50 && sf::Mouse::getPosition(m_window).x > clickerMask.getPosition().x &&
+			sf::Mouse::getPosition(m_window).y < clickerMask.getPosition().y + 50 && sf::Mouse::getPosition(m_window).y > clickerMask.getPosition().y)
+		{
+			clickerMask.setRandomPosition();
+		}
+	}
+}
 
 /// <summary>
 /// deal with key presses from the user
@@ -94,6 +114,11 @@ void Game::processKeys(const std::optional<sf::Event> t_event)
 	{
 		m_DELETEexitGame = true; 
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+	{
+		clickerMask.setRandomPosition();
+	}
+
 }
 
 /// <summary>
@@ -127,9 +152,12 @@ void Game::render()
 {
 	m_window.draw(m_backgroundSprite);
 
-	m_window.draw(scene.getSceneSprite());
-	m_window.draw(mask.getMaskSprite());
-
+	//m_window.draw(scene.getSceneSprite());
+	//for (int index = 0; index < maskList.size(); index++)
+	//{
+	//	m_window.draw(maskList[index].getMaskSprite());
+	//}
+	m_window.draw(clickerMask.getMaskSprite());
 	m_window.display();
 }
 
@@ -149,7 +177,6 @@ void Game::setupTexts()
 	m_DELETEwelcomeMessage.setOutlineColor(sf::Color::Black);
 	m_DELETEwelcomeMessage.setFillColor(sf::Color::Red);
 	m_DELETEwelcomeMessage.setOutlineThickness(2.0f);
-
 }
 
 /// <summary>
@@ -162,8 +189,13 @@ void Game::setupSprites()
 		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
-	m_backgroundSprite.setTexture(m_backgroundTexture,true);// to reset the dimensions of texture
-	mask.setMaskDimensions();
+	m_backgroundSprite.setTexture(m_backgroundTexture,true);
+
+	for (int index = 0; index < maskList.size(); index++)
+	{
+		maskList[index].setMaskDimensions(index);
+	}
+	clickerMask.setMaskDimensions(1);
 	scene.setSceneDimensions();
 }
 
@@ -181,7 +213,8 @@ void Game::setupAudio()
 
 void Game::printMaskType()
 {
-	std::cout << mask.getMaskType() << "\n";
-	std::cout << scene.getSceneType() << "\n";
-
+	//std::cout << mask.getMaskType() << "\n";
+	//std::cout << maskRed.getMaskType() << "\n";
+	//std::cout << scene.getSceneType() << "\n";
+	//std::cout << maskList.size() << "\n";
 }

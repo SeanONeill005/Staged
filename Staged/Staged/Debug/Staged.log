@@ -1,4 +1,16 @@
-﻿  Mask.cpp
+﻿  Game.cpp
+C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Game.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\stdexcept(100,30):
+      see declaration of 'std::runtime_error'
+      C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Game.cpp(46,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Game.cpp(92,39): warning C4189: 'newMousePress': local variable is initialized but not referenced
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Game.cpp(139,28): warning C4100: 't_deltaTime': unreferenced parameter
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Game.cpp(194,28): warning C4018: '<': signed/unsigned mismatch
+  Mask.cpp
 C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
   (compiling source file 'Mask.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\stdexcept(100,30):
@@ -6,4 +18,7 @@ C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-i
       C:\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
       see declaration of 'sf::Exception'
   
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Mask.cpp(12,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\gamejam\Desktop\mkdir\Staged\Staged\Mask.cpp(13,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   Staged.vcxproj -> C:\Users\gamejam\Desktop\mkdir\Staged\Debug\Staged.exe

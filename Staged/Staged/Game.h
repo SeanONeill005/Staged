@@ -5,7 +5,7 @@
 #include <SFML/Audio.hpp>
 #include "Mask.h"
 #include "Scene.h"
-
+#include <vector>
 const sf::Color ULTRAMARINE{ 5, 55,242,255 }; // const colour
 
 class Game
@@ -28,6 +28,8 @@ private:
 	void setupAudio();
 
 	void printMaskType();
+
+	void processClick(const std::optional<sf::Event> t_event);
 	
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_jerseyFont;// font used by message
@@ -41,7 +43,11 @@ private:
 	bool m_DELETEexitGame; // control exiting game
 
 	Mask mask = "Blue";
+	Mask maskRed = "Red";
 	Scene scene = "Purple";
+	std::vector<Mask> maskList = { mask, maskRed};
+
+	Mask clickerMask = "ClickerMask";
 
 };
 
