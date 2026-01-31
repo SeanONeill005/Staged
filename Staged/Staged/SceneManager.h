@@ -7,7 +7,7 @@
 #include "Globals.h"
 #include "BaseScene.h"
 
-enum class SceneType { MAIN_MENU, GAMEPLAY, CIRCUS, BOAT, GAME_OVER };
+enum class SceneType { MAIN_MENU, GAMEPLAY, CIRCUS, BOAT, CHEST, GAME_OVER };
 using Scene = std::unique_ptr<BaseScene>;
 
 class SceneManager

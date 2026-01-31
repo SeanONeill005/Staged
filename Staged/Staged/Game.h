@@ -9,6 +9,7 @@
 #include "GameplayScene.h"
 #include "CircusScene.h"
 #include "BoatScene.h"
+#include "ChestScene.h"
 #include "SceneManager.h"
 #include "MainMenuScene.h"
 class Game
