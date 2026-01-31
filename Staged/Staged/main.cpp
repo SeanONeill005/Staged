@@ -24,17 +24,12 @@
 #include <iostream>
 #include "Game.h"
 
-/// <summary>
-/// main enrtry point
-/// </summary>
-/// <returns>success or failure</returns>
 int main()
 {
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
 	Game game;
 	game.run();
 
-	
-		
-	
-	return EXIT_SUCCESS; // 0
+	return EXIT_SUCCESS;
 }
