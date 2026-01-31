@@ -3,6 +3,7 @@
 GameplayScene::GameplayScene() {
 	setupTexts(); // load font 
 	setupSprites(); // load texture
+	gameTimer.restart();
 }
 
 GameplayScene::~GameplayScene()
@@ -17,6 +18,11 @@ void GameplayScene::processEvents()
 		else if (e->is<sf::Event::KeyPressed>()) { processKeys(e); }
 		else if (e->is<sf::Event::MouseButtonPressed>()) { processClick(e); }
 	}
+	if (gameCompleted)
+	{
+		gameCompleted = false;
+		SceneManager::getInstance()->setScene(SceneType::CHEST);
+	}
 }
 
 void GameplayScene::processClick(const std::optional<sf::Event> t_event)
@@ -30,6 +36,8 @@ void GameplayScene::processClick(const std::optional<sf::Event> t_event)
 		if (sf::Mouse::getPosition(*m_window).x < clicker.getPosition().x + clicker.getRadius() && sf::Mouse::getPosition(*m_window).x > clicker.getPosition().x - clicker.getRadius() &&
 			sf::Mouse::getPosition(*m_window).y < clicker.getPosition().y + clicker.getRadius() && sf::Mouse::getPosition(*m_window).y > clicker.getPosition().y - clicker.getRadius())
 		{
+			score++;
+			scoreText.setString(std::to_string(score));
 			setRandomPosition();
 		}
 	}
@@ -62,6 +70,10 @@ void GameplayScene::update(sf::Time t_dT)
 	float radius = (1 - (elapsedTime / maxTime)) * maxRadius;
 	clicker.setRadius(radius);
 	clicker.setOrigin({ radius, radius });
+	if (gameTimer.getElapsedTime().asSeconds() >= 10)
+	{
+		gameCompleted = true;
+	}
 }
 
 void GameplayScene::render()
@@ -70,7 +82,11 @@ void GameplayScene::render()
 
 	m_window->draw(m_backgroundSprite);
 
+	m_window->draw(playerSprite);
+
 	m_window->draw(clicker);
+
+	m_window->draw(scoreText);
 
 	m_window->display();
 }
@@ -110,6 +126,14 @@ void GameplayScene::setupSprites()
 	}
 	stage.setSceneDimensions();
 	clicker.setOrigin(sf::Vector2f{ 25.0f, 25.0f });
+
+	scoreText.setCharacterSize(100);
+	scoreText.setFillColor(sf::Color::Black);
+	scoreText.setPosition(sf::Vector2f{ 10.0f, 970.0f });
+
+	playerSprite.setPosition(sf::Vector2f{ WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 });
+	playerSprite.setScale(sf::Vector2f{.2f, .2f});
+	playerSprite.setOrigin(sf::Vector2f{ 432, 768 });
 }
 
 void GameplayScene::setRandomPosition()

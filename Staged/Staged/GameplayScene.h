@@ -50,4 +50,16 @@ private:
 
 	sf::Time maxTime = sf::seconds(5);
 	sf::Time elapsedTime = sf::seconds(0);
+
+	bool gameCompleted = false;
+
+	int score = 0;
+	sf::Font scoreFont{ "ASSETS/FONTS/NeonLight-Regular.ttf" };
+	sf::Text scoreText{ scoreFont };
+
+	sf::Time endTimer = sf::seconds(20);
+	sf::Clock gameTimer;
+
+	sf::Texture playerTexture{ "ASSETS/IMAGES/CowboyPose1.png" };
+	sf::Sprite playerSprite{ playerTexture };
 };
