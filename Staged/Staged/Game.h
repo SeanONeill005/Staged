@@ -8,7 +8,7 @@
 #include "Globals.h"
 #include "GameplayScene.h"
 #include "SceneManager.h"
-
+#include "MainMenuScene.h"
 class Game
 {
 public:
@@ -23,7 +23,5 @@ private:
 	void init();
 
 	std::shared_ptr<sf::RenderWindow> m_window;
-
 };
-
 #endif

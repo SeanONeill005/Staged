@@ -50,16 +50,15 @@ void GameplayScene::processKeys(const std::optional<sf::Event> t_event)
 	{
 		setRandomPosition();
 	}
-
 }
 
 void GameplayScene::update(sf::Time t_dT)
 {
 	elapsedTime += t_dT;
 	if (elapsedTime > maxTime) {
+		setRandomPosition();
 		elapsedTime = sf::seconds(0);
 	}
-
 	float radius = (1 - (elapsedTime / maxTime)) * maxRadius;
 	clicker.setRadius(radius);
 	clicker.setOrigin({ radius, radius });

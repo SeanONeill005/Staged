@@ -1,5 +1,6 @@
 #include "Game.h"
 
+
 void Game::run()
 {
 	init();
@@ -7,11 +8,11 @@ void Game::run()
 	auto sceneManager = SceneManager::getInstance();
 	sceneManager->setRenderWindow(m_window);
 
-	//sceneManager->registerScene<MenuScene>(SceneType::MAIN_MENU);
+	sceneManager->registerScene<MainMenuScene>(SceneType::MAIN_MENU);
 	sceneManager->registerScene<GameplayScene>(SceneType::GAMEPLAY);
 	//sceneManager->registerScene<GameOverScene>(SceneType::GAME_OVER);
 
-	sceneManager->setScene(SceneType::GAMEPLAY);
+	sceneManager->setScene(SceneType::MAIN_MENU);
 
 	sf::Clock clock;
 	sf::Time lag = sf::Time::Zero;

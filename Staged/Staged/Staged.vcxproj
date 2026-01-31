@@ -22,6 +22,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MainMenuScene.h" />
     <ClCompile Include="Mask.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
