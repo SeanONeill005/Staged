@@ -75,11 +75,11 @@ void CircusScene::switchClownPoseTexture()
 void CircusScene::updateScore()
 {
 	// Calculate multiplier based on number of balls in flight
-	int activeBalls = static_cast<int>(m_jugglingBalls.size());
+	int activeBalls = static_cast<int>(5 - m_droppedBalls);
 	int multiplier = std::max(1, activeBalls);
 
-	// Base points per catch = 10, multiplied by number of balls
-	int points = 10 * multiplier;
+	// Base points per catch = 1, multiplied by number of balls
+	int points = 1 * multiplier;
 	m_score += points;
 
 	m_scoreText.setString("Score: " + std::to_string(m_score));

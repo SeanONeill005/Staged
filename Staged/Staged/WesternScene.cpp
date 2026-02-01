@@ -54,7 +54,7 @@ void WesternScene::processClick(const std::optional<sf::Event> t_event)
 
 		if (targetSprite.getGlobalBounds().contains(mouseCoords))
 		{
-			score++;
+			score += 3;
 			scoreText.setString("Score: " + std::to_string(score));
 
 			// Determine which side of the screen was clicked

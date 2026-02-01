@@ -34,13 +34,13 @@ void ChestScene::setupMasks()
 	m_mask2Sprite.setPosition({ 1130.f, 740.f });
 
 	// Set up grey overlays (match mask bounds)
-	m_greyOverlay1.setSize({ bounds1.size.x * 0.2f, bounds1.size.y * 0.2f });
-	m_greyOverlay1.setOrigin({ bounds1.size.x * 0.2f / 2.f, bounds1.size.y * 0.2f / 2.f });
+	m_greyOverlay1.setSize({ bounds1.size.x, bounds1.size.y});
+	m_greyOverlay1.setOrigin({ bounds1.size.x / 2.f, bounds1.size.y / 2.f });
 	m_greyOverlay1.setPosition(m_mask1Sprite.getPosition());
 	m_greyOverlay1.setFillColor(sf::Color(128, 128, 128, 200));
 
-	m_greyOverlay2.setSize({ bounds2.size.x * 0.2f, bounds2.size.y * 0.2f });
-	m_greyOverlay2.setOrigin({ bounds2.size.x * 0.2f / 2.f, bounds2.size.y * 0.2f / 2.f });
+	m_greyOverlay2.setSize({ bounds2.size.x, bounds2.size.y });
+	m_greyOverlay2.setOrigin({ bounds2.size.x / 2.f, bounds2.size.y / 2.f });
 	m_greyOverlay2.setPosition(m_mask2Sprite.getPosition());
 	m_greyOverlay2.setFillColor(sf::Color(128, 128, 128, 200));
 }
