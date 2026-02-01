@@ -11,6 +11,13 @@
 #include <future>
 
 namespace Textures {
+    enum class Stage {
+        LeftCurtain,
+        RightCurtain,
+        LeftLight,
+        RightLight
+    };
+
     enum class Props {
         Ball,
         Cactus,
@@ -54,7 +61,8 @@ using TextureID = std::variant<
     Textures::Backgrounds,
     Textures::Clown,
     Textures::Cowboy,
-    Textures::UI
+    Textures::UI,
+    Textures::Stage
 >;
 
 // Hash support for variant in unordered_map

@@ -122,6 +122,4 @@ void ChestScene::render()
 	if (GameScores::circusCompleted) {
 		m_window->draw(m_greyOverlay2);
 	}
-
-	m_window->display();
 }

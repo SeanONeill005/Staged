@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseScene.cpp" />
     <ClCompile Include="BoatScene.cpp" />
     <ClCompile Include="CircusScene.cpp" />
     <ClCompile Include="ChestScene.cpp" />

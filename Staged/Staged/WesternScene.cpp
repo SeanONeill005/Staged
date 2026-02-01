@@ -183,7 +183,6 @@ void WesternScene::render()
 
 	m_window->draw(scoreText);
 	m_window->draw(missedText);
-	m_window->display();
 }
 
 void WesternScene::setupTexts()

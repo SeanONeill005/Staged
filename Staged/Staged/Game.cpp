@@ -92,6 +92,12 @@ void Game::loadTextures()
 	texManager.queueLoadFromAssets(Textures::UI::QuitButton, "QuitButton.png");
 	texManager.queueLoadFromAssets(Textures::UI::HitMarker, "HitMarker.png");
 
+	// Stage elements
+	texManager.queueLoadFromAssets(Textures::Stage::LeftCurtain, "left_curtain.png");
+	texManager.queueLoadFromAssets(Textures::Stage::RightCurtain, "right_curtain.png");
+	texManager.queueLoadFromAssets(Textures::Stage::LeftLight, "left_light.png");
+	texManager.queueLoadFromAssets(Textures::Stage::RightLight, "right_light.png");
+
 	// Now load them all in parallel
 	if (!texManager.loadQueuedTextures()) {
 		std::cerr << "Failed to load some textures!" << std::endl;

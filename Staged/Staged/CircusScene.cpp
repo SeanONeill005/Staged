@@ -183,5 +183,4 @@ void CircusScene::render()
 	}
 	m_window->draw(m_scoreText);
 	m_window->draw(m_livesText);
-	m_window->display();
 }
