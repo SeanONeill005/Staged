@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <array>
 #include <memory>
 
 #include <SFML/Graphics.hpp>

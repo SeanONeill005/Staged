@@ -9,6 +9,7 @@
 #include <thread>
 #include <mutex>
 #include <future>
+#include <atomic>
 
 namespace Textures {
     enum class Stage {

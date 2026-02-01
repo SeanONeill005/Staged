@@ -2,6 +2,8 @@
 #include <stack>
 
 #include "Globals.h"
+#include <vector>
+#include <optional>
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
 #include "ScoreManager.h"

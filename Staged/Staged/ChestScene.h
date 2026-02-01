@@ -1,5 +1,7 @@
 #pragma once
 #include <array>
+#include <optional>
+
 #include <SFML/Graphics.hpp>
 #include "SceneManager.h"
 #include "BaseScene.h"

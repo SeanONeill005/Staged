@@ -1,6 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <array>
+#include <string>
+#include <vector>
+#include <optional>
+#include <future>
 #include "TextureManager.h"
 
 enum class TransitionState {
