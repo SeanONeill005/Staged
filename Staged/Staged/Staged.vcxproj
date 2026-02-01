@@ -39,6 +39,8 @@
     <ClInclude Include="BoatScene.h" />
     <ClInclude Include="ChestScene.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="WesternScene.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="CircusScene.h" />
@@ -54,12 +56,16 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
     </Image>
+    <Image Include="Icon32.ico" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="ASSETS\FONTS\Jersey20-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="ASSETS\AUDIO\beep.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Staged.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
