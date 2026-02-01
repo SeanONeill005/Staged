@@ -1,6 +1,7 @@
 #include "MainMenuScene.h"
 
 MainMenuScene::MainMenuScene()
+	: backgroundSprite(TextureManager::getInstance().get(Textures::Backgrounds::Theatre))
 {
 	setupButtons();
 }
@@ -15,8 +16,6 @@ void MainMenuScene::processEvents()
 	{
 		if (e->is<sf::Event::Closed>()) { m_window->close(); }
 		else if (e->is<sf::Event::MouseButtonPressed>()) { processClick(e); }
-		
-
 	}
 	if (playPressed)
 	{
@@ -30,10 +29,9 @@ void MainMenuScene::processClick(const std::optional<sf::Event> t_event)
 	const sf::Event::MouseButtonPressed* newMousePress = t_event->getIf<sf::Event::MouseButtonPressed>();
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-
 		if (playButton.getGlobalBounds().contains(m_window->mapPixelToCoords(sf::Mouse::getPosition(*m_window))))
 		{
-			std::cout << "Play Button CLicked" << "\n";
+			std::cout << "Play Button Clicked" << "\n";
 			playPressed = true;
 		}
 		else if (exitButton.getGlobalBounds().contains(m_window->mapPixelToCoords(sf::Mouse::getPosition(*m_window))))
@@ -46,7 +44,6 @@ void MainMenuScene::processClick(const std::optional<sf::Event> t_event)
 
 void MainMenuScene::update(sf::Time t_dT)
 {
-	processEvents();
 }
 
 void MainMenuScene::render()
@@ -57,7 +54,6 @@ void MainMenuScene::render()
 	m_window->draw(exitButton);
 	m_window->draw(playText);
 	m_window->draw(exitText);
-	
 	m_window->display();
 }
 
@@ -72,7 +68,6 @@ void MainMenuScene::setupButtons()
 	playText.setCharacterSize(75);
 	playText.setPosition(playButton.getPosition());
 	playText.setPosition(sf::Vector2f(playButton.getPosition().x - 135, playButton.getPosition().y - 50));
-
 	exitButton.setSize(sf::Vector2f{ 400.0f, 200.0f });
 	exitButton.setFillColor(sf::Color{ 10, 10, 10, });
 	exitButton.setOrigin(sf::Vector2f{ exitButton.getSize().x / 2, exitButton.getSize().y / 2 });

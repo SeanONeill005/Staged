@@ -1,6 +1,10 @@
 #include "ChestScene.h"
 
 ChestScene::ChestScene()
+	: m_menuBackgroundSprite(TextureManager::getInstance().get(Textures::Backgrounds::Theatre))
+	, m_chestSprite(TextureManager::getInstance().get(Textures::Props::Chest))
+	, m_mask1Sprite(TextureManager::getInstance().get(Textures::Cowboy::Mask))
+	, m_mask2Sprite(TextureManager::getInstance().get(Textures::Clown::Mask))
 {
 	setupMasks();
 }
@@ -11,22 +15,37 @@ ChestScene::~ChestScene()
 
 void ChestScene::setupMasks()
 {
-	m_masks[0] = &m_mask1;
-	m_masks[1] = &m_mask2;
-	m_masks[2] = &m_mask3;
+	m_masks[0] = &m_mask1Sprite;
+	m_masks[1] = &m_mask2Sprite;
 
-	m_mask1.setFillColor(sf::Color::Red);
-	m_mask2.setFillColor(sf::Color::Green);
-	m_mask3.setFillColor(sf::Color::Blue);
+	// Set up chest sprite
+	m_chestSprite.setScale({ 0.75f, 0.75f });
+	sf::FloatRect chestBounds = m_chestSprite.getLocalBounds();
+	m_chestSprite.setOrigin({ chestBounds.size.x / 2.f, chestBounds.size.y / 2.f });
+	m_chestSprite.setPosition({ WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f });
 
-	m_mask1.setPosition({ 430.f, 540.f });
-	m_mask2.setPosition({ 860.f, 540.f });
-	m_mask3.setPosition({ 1290.f, 540.f });
+	// Set up mask 1 (Cowboy)
+	sf::FloatRect bounds1 = m_mask1Sprite.getLocalBounds();
+	m_mask1Sprite.setOrigin({ bounds1.size.x / 2.f, bounds1.size.y / 2.f });
+	m_mask1Sprite.setScale({ 0.2f, 0.2f });
+	m_mask1Sprite.setPosition({ 760.f, 740.f });
 
-	for (auto* mask : m_masks) {
-		mask->setRadius(100.f);
-		mask->setOrigin({ 100.f, 100.f });
-	}
+	// Set up mask 2 (Clown)
+	sf::FloatRect bounds2 = m_mask2Sprite.getLocalBounds();
+	m_mask2Sprite.setOrigin({ bounds2.size.x / 2.f, bounds2.size.y / 2.f });
+	m_mask2Sprite.setScale({ 0.2f, 0.2f });
+	m_mask2Sprite.setPosition({ 1130.f, 740.f });
+
+	// Set up grey overlays (match mask bounds)
+	m_greyOverlay1.setSize({ bounds1.size.x * 0.2f, bounds1.size.y * 0.2f });
+	m_greyOverlay1.setOrigin({ bounds1.size.x * 0.2f / 2.f, bounds1.size.y * 0.2f / 2.f });
+	m_greyOverlay1.setPosition(m_mask1Sprite.getPosition());
+	m_greyOverlay1.setFillColor(sf::Color(128, 128, 128, 200));
+
+	m_greyOverlay2.setSize({ bounds2.size.x * 0.2f, bounds2.size.y * 0.2f });
+	m_greyOverlay2.setOrigin({ bounds2.size.x * 0.2f / 2.f, bounds2.size.y * 0.2f / 2.f });
+	m_greyOverlay2.setPosition(m_mask2Sprite.getPosition());
+	m_greyOverlay2.setFillColor(sf::Color(128, 128, 128, 200));
 }
 
 void ChestScene::processEvents()
@@ -48,29 +67,25 @@ void ChestScene::processClick(const std::optional<sf::Event> t_event)
 	sf::Vector2i clickPos = sf::Mouse::getPosition(*m_window.get());
 	sf::Vector2f mouseCoords = static_cast<sf::Vector2f>(clickPos);
 
-	auto isClicked = [mouseCoords](sf::CircleShape* mask) -> bool {
-		if (!mask) return false;
-
-		sf::Vector2f diff = mouseCoords - mask->getPosition();
-		float distanceSq = (diff.x * diff.x) + (diff.y * diff.y);
-		float radius = mask->getRadius();
-
-		return distanceSq < (radius * radius);
-		};
-
 	for (size_t i = 0; i < m_masks.size(); ++i) {
-		if (isClicked(m_masks[i])) {
-			m_changeScene = true;
-
+		if (m_masks[i] && m_masks[i]->getGlobalBounds().contains(mouseCoords)) {
 			switch (i) {
 			case 0:
-				m_changeSceneTo = SceneType::GAMEPLAY;
+				// Don't allow playing western if already completed
+				if (!GameScores::westernCompleted) {
+					m_changeScene = true;
+					m_changeSceneTo = SceneType::WESTERN;
+				}
 				break;
 			case 1:
-				m_changeSceneTo = SceneType::CIRCUS;
+				// Don't allow playing circus if already completed
+				if (!GameScores::circusCompleted) {
+					m_changeScene = true;
+					m_changeSceneTo = SceneType::CIRCUS;
+				}
 				break;
 			case 2:
-				// action for the 3rd mask
+				// third mask
 				break;
 			}
 		}
@@ -93,9 +108,22 @@ void ChestScene::update(sf::Time t_dT)
 void ChestScene::render()
 {
 	m_window->clear(sf::Color::White);
+	m_window->draw(m_menuBackgroundSprite);
+	m_window->draw(m_chestSprite);
 
+	// Draw masks
 	for (auto* m : m_masks) {
-		m_window->draw(*m);
+		if (m) {
+			m_window->draw(*m);
+		}
+	}
+
+	// Draw grey overlays on completed games
+	if (GameScores::westernCompleted) {
+		m_window->draw(m_greyOverlay1);
+	}
+	if (GameScores::circusCompleted) {
+		m_window->draw(m_greyOverlay2);
 	}
 
 	m_window->display();

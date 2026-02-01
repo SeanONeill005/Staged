@@ -4,12 +4,15 @@
 void Game::run()
 {
 	init();
+	loadTextures();
+
+	GameScores::resetScores();
 
 	auto sceneManager = SceneManager::getInstance();
 	sceneManager->setRenderWindow(m_window);
 
 	sceneManager->registerScene<MainMenuScene>(SceneType::MAIN_MENU);
-	sceneManager->registerScene<GameplayScene>(SceneType::GAMEPLAY);
+	sceneManager->registerScene<WesternScene>(SceneType::WESTERN);
 	sceneManager->registerScene<CircusScene>(SceneType::CIRCUS);
 	sceneManager->registerScene<BoatScene>(SceneType::BOAT);
 	sceneManager->registerScene<ChestScene>(SceneType::CHEST);
@@ -50,4 +53,47 @@ void Game::init()
 
 	sf::View view(RESOLUTION / 2.f, RESOLUTION);
 	m_window->setView(view);
+}
+
+void Game::loadTextures()
+{
+	// Queue all textures first (this is instant)
+	auto& texManager = TextureManager::getInstance();
+
+	// Props
+	texManager.queueLoadFromAssets(Textures::Props::Ball, "Ball.png");
+	texManager.queueLoadFromAssets(Textures::Props::Cactus, "Cactus.png");
+	texManager.queueLoadFromAssets(Textures::Props::Chest, "Chest.png");
+	texManager.queueLoadFromAssets(Textures::Props::Popcorn, "Popcorn.png");
+	texManager.queueLoadFromAssets(Textures::Props::Target, "Target.png");
+	texManager.queueLoadFromAssets(Textures::Props::Mannequin, "Mannequin.png");
+	texManager.queueLoadFromAssets(Textures::Props::Gun, "Gun.png");
+
+	// Backgrounds
+	texManager.queueLoadFromAssets(Textures::Backgrounds::Circus, "Circus_Background.png");
+	texManager.queueLoadFromAssets(Textures::Backgrounds::Theatre, "TheatreBackground.png");
+	texManager.queueLoadFromAssets(Textures::Backgrounds::Western, "Western_Background.png");
+
+	// Clown
+	texManager.queueLoadFromAssets(Textures::Clown::Juggle1, "ClownJuggle1.png");
+	texManager.queueLoadFromAssets(Textures::Clown::Juggle2, "ClownJuggle2.png");
+	texManager.queueLoadFromAssets(Textures::Clown::Mask, "ClownMask.png");
+	texManager.queueLoadFromAssets(Textures::Clown::Pose1, "ClownPose1.png");
+	texManager.queueLoadFromAssets(Textures::Clown::Pose2, "ClownPose2.png");
+
+	// Cowboy
+	texManager.queueLoadFromAssets(Textures::Cowboy::Mask, "CowboyMask.png");
+	texManager.queueLoadFromAssets(Textures::Cowboy::Pose1, "CowboyPose1.png");
+	texManager.queueLoadFromAssets(Textures::Cowboy::Pose2, "CowboyPose2.png");
+	texManager.queueLoadFromAssets(Textures::Cowboy::Shoot, "CowboyShoot.png");
+
+	// UI
+	texManager.queueLoadFromAssets(Textures::UI::PlayButton, "PlayButton.png");
+	texManager.queueLoadFromAssets(Textures::UI::QuitButton, "QuitButton.png");
+	texManager.queueLoadFromAssets(Textures::UI::HitMarker, "HitMarker.png");
+
+	// Now load them all in parallel
+	if (!texManager.loadQueuedTextures()) {
+		std::cerr << "Failed to load some textures!" << std::endl;
+	}
 }

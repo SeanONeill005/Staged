@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{975b1b83-e467-48b5-9ecb-7bce758aa7ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{e8f05efd-6225-4c01-aca6-7757a7bd8954}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,10 +45,31 @@
     <ClCompile Include="Stage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameplayScene.cpp">
+    <ClCompile Include="WesternScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="ChestScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="JugglingBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BoatScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="CircusScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,17 +86,32 @@
     <ClInclude Include="Stage.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="BaseScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameplayScene.h">
+    <ClInclude Include="WesternScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ChestScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="JugglingBall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoatScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="CircusScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
