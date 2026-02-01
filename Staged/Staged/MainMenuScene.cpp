@@ -73,10 +73,6 @@ void MainMenuScene::render()
 	m_window->draw(exitText);
 	m_window->draw(exitButtonSprite);
 	m_window->draw(playButtonSprite);
-	
-	
-	
-	m_window->display();
 }
 
 void MainMenuScene::setupButtons()

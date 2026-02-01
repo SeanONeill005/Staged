@@ -39,6 +39,4 @@ void BoatScene::update(sf::Time t_dT)
 void BoatScene::render()
 {
 	m_window->clear(sf::Color::White);
-
-	m_window->display();
 }

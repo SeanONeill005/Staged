@@ -31,6 +31,54 @@ public:
 	}
 
 	void setScene(SceneType t_sceneType) {
+		if (m_currentScene) {
+			// Start closing transition on current scene
+			m_nextSceneType = t_sceneType;
+			m_currentScene->startClosingTransition();
+			m_transitioning = true;
+		}
+		else {
+			// No current scene, just switch directly
+			switchToScene(t_sceneType);
+		}
+	}
+
+	void processEvents() {
+		if (m_currentScene && !m_transitioning) {
+			m_currentScene->processEvents();
+		}
+	}
+
+	void update(sf::Time t_dT) {
+		if (m_currentScene) {
+			m_currentScene->updateTransition(t_dT);
+
+			if (m_transitioning && m_currentScene->isClosingComplete()) {
+				switchToScene(m_nextSceneType);
+				m_transitioning = false;
+			}
+
+			// Only update scene logic when not transitioning
+			if (!m_transitioning) {
+				m_currentScene->update(t_dT);
+			}
+		}
+	}
+
+	void render() {
+		if (m_currentScene) {
+			m_currentScene->render();
+			m_currentScene->renderTransition();
+			m_window->display();
+		}
+	}
+
+private:
+	using SceneCache = std::unordered_map<SceneType, std::function<Scene()>>;
+
+	SceneManager() {}
+
+	void switchToScene(SceneType t_sceneType) {
 		if (const auto it = m_sceneCache.find(t_sceneType); it != m_sceneCache.end()) {
 			m_currentScene = it->second();
 			m_currentScene->setRenderWindow(m_window);
@@ -40,15 +88,11 @@ public:
 		}
 	}
 
-	void processEvents() { m_currentScene->processEvents(); }
-	void update(sf::Time t_dT) { m_currentScene->update(t_dT); }
-	void render() { m_currentScene->render(); }
-private:
-	using SceneCache = std::unordered_map<SceneType, std::function<Scene()>>;
-
-	SceneManager() {}
 	SceneCache m_sceneCache;
 	Scene m_currentScene;
 	std::shared_ptr<sf::RenderWindow> m_window;
+
+	bool m_transitioning = false;
+	SceneType m_nextSceneType;
 };
 

@@ -224,5 +224,4 @@ void GameOverScene::render()
 	m_window->draw(m_bestCircusText);
 	m_window->draw(m_bestTotalText);
 	m_window->draw(m_pressKeyText);
-	m_window->display();
 }
