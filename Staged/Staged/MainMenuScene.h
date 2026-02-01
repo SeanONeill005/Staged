@@ -25,4 +25,10 @@ private:
 	sf::Text playText{ textFont };
 	sf::Text exitText{ textFont };
 	sf::Sprite backgroundSprite;
+	sf::Texture playButtonTexture{"ASSETS/IMAGES/PlayButton.png"};
+	sf::Texture playeButtonHighlightedTexture{ "ASSETS/IMAGES/PlayHighlighted.png" };
+	sf::Sprite playButtonSprite{ playButtonTexture };
+	sf::Texture exitButtonTexture{ "ASSETS/IMAGES/QuitButton.png" };
+	sf::Texture exitButtonHighlightedTexture{ "ASSETS/IMAGES/QuitHighlighted.png" };
+	sf::Sprite exitButtonSprite{ exitButtonTexture };
 };
