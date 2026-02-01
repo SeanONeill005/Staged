@@ -206,7 +206,6 @@ void WesternScene::setupSprites()
 	// Set up western background
 	sf::FloatRect westernBounds = m_westernBackgroundSprite.getLocalBounds();
 	m_westernBackgroundSprite.setOrigin({ westernBounds.size.x / 2.f, westernBounds.size.y / 2.f });
-	m_westernBackgroundSprite.setScale({ 0.6f, 0.6f });
 	m_westernBackgroundSprite.setPosition({ WINDOW_WIDTH / 2.f, WINDOW_HEIGHT * 0.4f });
 
 	// Set up player sprite

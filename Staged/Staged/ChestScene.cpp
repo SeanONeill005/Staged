@@ -19,7 +19,6 @@ void ChestScene::setupMasks()
 	m_masks[1] = &m_mask2Sprite;
 
 	// Set up chest sprite
-	m_chestSprite.setScale({ 0.75f, 0.75f });
 	sf::FloatRect chestBounds = m_chestSprite.getLocalBounds();
 	m_chestSprite.setOrigin({ chestBounds.size.x / 2.f, chestBounds.size.y / 2.f });
 	m_chestSprite.setPosition({ WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f });
@@ -27,13 +26,11 @@ void ChestScene::setupMasks()
 	// Set up mask 1 (Cowboy)
 	sf::FloatRect bounds1 = m_mask1Sprite.getLocalBounds();
 	m_mask1Sprite.setOrigin({ bounds1.size.x / 2.f, bounds1.size.y / 2.f });
-	m_mask1Sprite.setScale({ 0.2f, 0.2f });
 	m_mask1Sprite.setPosition({ 760.f, 740.f });
 
 	// Set up mask 2 (Clown)
 	sf::FloatRect bounds2 = m_mask2Sprite.getLocalBounds();
 	m_mask2Sprite.setOrigin({ bounds2.size.x / 2.f, bounds2.size.y / 2.f });
-	m_mask2Sprite.setScale({ 0.2f, 0.2f });
 	m_mask2Sprite.setPosition({ 1130.f, 740.f });
 
 	// Set up grey overlays (match mask bounds)

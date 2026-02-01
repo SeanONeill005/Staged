@@ -20,7 +20,6 @@ void CircusScene::setupSprites()
 	// Set up circus background
 	sf::FloatRect circusBounds = m_circusBackgroundSprite.getLocalBounds();
 	m_circusBackgroundSprite.setOrigin({ circusBounds.size.x / 2.f, circusBounds.size.y / 2.f });
-	m_circusBackgroundSprite.setScale({ 0.6f, 0.6f });
 	m_circusBackgroundSprite.setPosition({ WINDOW_WIDTH / 2.f, WINDOW_HEIGHT * 0.4f });
 
 	// Set up clown sprite
