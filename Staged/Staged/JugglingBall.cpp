@@ -24,6 +24,10 @@ JugglingBall::JugglingBall()
 	}
 }
 
+JugglingBall::~JugglingBall()
+{
+}
+
 bool JugglingBall::tryClick(sf::Vector2f t_mousePos)
 {
 	if (m_velocity.y < 0 || m_shape.getPosition().y < MIN_CATCH_HEIGHT) {
@@ -47,16 +51,23 @@ bool JugglingBall::tryClick(sf::Vector2f t_mousePos)
 
 void JugglingBall::update(sf::Time t_dT)
 {
-	m_velocity += GRAVITY * t_dT.asSeconds();
-	m_shape.move(m_velocity);
+	if (!m_isDropped) {
+		if (m_shape.getPosition().y > RESOLUTION.y + 100) {
+			m_isDropped = true;
+		}
+		m_velocity += GRAVITY * t_dT.asSeconds();
+		m_shape.move(m_velocity);
+	}
 }
 
 void JugglingBall::draw(std::shared_ptr<sf::RenderWindow> t_window)
 {
-	if (m_velocity.y > 0 && m_shape.getPosition().y > MIN_CATCH_HEIGHT) {
-		m_glow.setPosition(m_shape.getPosition());
-		t_window->draw(m_glow);
-	}
+	if (!m_isDropped) {
+		if (m_velocity.y > 0 && m_shape.getPosition().y > MIN_CATCH_HEIGHT) {
+			m_glow.setPosition(m_shape.getPosition());
+			t_window->draw(m_glow);
+		}
 
-	t_window->draw(m_shape);
+		t_window->draw(m_shape);
+	}
 }

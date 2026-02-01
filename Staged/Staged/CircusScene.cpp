@@ -23,6 +23,9 @@ void CircusScene::processEvents()
 		else if (e->is<sf::Event::KeyPressed>()) { processKeys(e); }
 		else if (e->is<sf::Event::MouseButtonPressed>()) { processClick(e); }
 	}
+	if (m_changeScene) {
+		SceneManager::getInstance()->setScene(m_changeSceneTo);
+	}
 }
 
 void CircusScene::processClick(const std::optional<sf::Event> t_event)
@@ -48,7 +51,26 @@ void CircusScene::update(sf::Time t_dT)
 {
 	for (auto& ball : m_jugglingBalls) {
 		ball.update(t_dT);
+
+		if (ball.isDropped()) {
+			m_droppedBalls++;
+			std::cout << "You dropped the ball :(" << std::endl;
+
+			if (m_droppedBalls >= 3) {
+				m_changeScene = true;
+				m_changeSceneTo = SceneType::GAME_OVER;
+			}
+		}
 	}
+
+	m_jugglingBalls.erase(
+		std::remove_if(m_jugglingBalls.begin(), m_jugglingBalls.end(),
+			[](const JugglingBall& ball) {
+				return ball.isDropped();
+			}),
+		m_jugglingBalls.end()
+	);
+
 
 	m_elapsedTime += t_dT;
 

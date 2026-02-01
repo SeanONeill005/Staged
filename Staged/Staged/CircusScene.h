@@ -32,4 +32,9 @@ private:
 	sf::Time m_elapsedTime;
 
 	std::stack<float> m_ballTimes;
+
+	int m_droppedBalls{ 0 };
+
+	bool m_changeScene{ false };
+	SceneType m_changeSceneTo;
 };

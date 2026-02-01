@@ -13,7 +13,7 @@ void Game::run()
 	sceneManager->registerScene<CircusScene>(SceneType::CIRCUS);
 	sceneManager->registerScene<BoatScene>(SceneType::BOAT);
 	sceneManager->registerScene<ChestScene>(SceneType::CHEST);
-	//sceneManager->registerScene<GameOverScene>(SceneType::GAME_OVER);
+	sceneManager->registerScene<GameOverScene>(SceneType::GAME_OVER);
 
 	sceneManager->setScene(SceneType::MAIN_MENU);
 

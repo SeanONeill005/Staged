@@ -23,6 +23,8 @@
     <ClCompile Include="CircusScene.cpp" />
     <ClCompile Include="ChestScene.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
+    <ClCompile Include="GameOverScene.h" />
     <ClCompile Include="GameplayScene.cpp" />
     <ClCompile Include="JugglingBall.cpp" />
     <ClCompile Include="main.cpp" />
