@@ -49,8 +49,7 @@ void WesternScene::processClick(const std::optional<sf::Event> t_event)
 	const sf::Event::MouseButtonPressed* newMousePress = t_event->getIf<sf::Event::MouseButtonPressed>();
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		sf::Vector2i clickPos = sf::Mouse::getPosition(*m_window);
-		sf::Vector2f mouseCoords = m_window->mapPixelToCoords(clickPos);
+		sf::Vector2f mouseCoords = getMousePosition();
 
 		if (targetSprite.getGlobalBounds().contains(mouseCoords))
 		{
@@ -234,12 +233,6 @@ void WesternScene::setupSprites()
 	sf::FloatRect hitMarkerBounds = hitMarkerSprite.getLocalBounds();
 	hitMarkerSprite.setOrigin({ hitMarkerBounds.size.x / 2.f, hitMarkerBounds.size.y / 2.f });
 	hitMarkerSprite.setScale({ 0.3f, 0.3f });
-
-	for (int index = 0; index < maskList.size(); index++)
-	{
-		maskList[index].setMaskDimensions(index);
-	}
-	stage.setSceneDimensions();
 
 	scoreText.setCharacterSize(60);
 	scoreText.setFillColor(sf::Color::Black);

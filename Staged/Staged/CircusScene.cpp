@@ -100,8 +100,7 @@ void CircusScene::processEvents()
 
 void CircusScene::processClick(const std::optional<sf::Event> t_event)
 {
-	sf::Vector2i clickPos = sf::Mouse::getPosition(*m_window.get());
-	sf::Vector2f mouseCoords = static_cast<sf::Vector2f>(clickPos);
+	sf::Vector2f mouseCoords = getMousePosition();
 
 	bool ballWasClicked = false;
 	for (auto& ball : m_jugglingBalls) {

@@ -37,6 +37,7 @@ public:
 
 protected:
     std::shared_ptr<sf::RenderWindow> m_window;
+    sf::Vector2f getMousePosition() const;
 
 private:
     // Transition sprites

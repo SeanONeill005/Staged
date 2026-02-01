@@ -61,8 +61,7 @@ void ChestScene::processEvents()
 
 void ChestScene::processClick(const std::optional<sf::Event> t_event)
 {
-	sf::Vector2i clickPos = sf::Mouse::getPosition(*m_window.get());
-	sf::Vector2f mouseCoords = static_cast<sf::Vector2f>(clickPos);
+	sf::Vector2f mouseCoords = getMousePosition();
 
 	for (size_t i = 0; i < m_masks.size(); ++i) {
 		if (m_masks[i] && m_masks[i]->getGlobalBounds().contains(mouseCoords)) {

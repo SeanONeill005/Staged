@@ -42,10 +42,12 @@ void Game::run()
 
 void Game::init()
 {
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+
 	m_window = std::make_shared<sf::RenderWindow>(
-		sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }),
+		desktop,
 		"Staged",
-		sf::Style::Titlebar | sf::Style::Close
+		sf::State::Fullscreen
 	);
 
 	m_window->setKeyRepeatEnabled(false);
@@ -53,6 +55,8 @@ void Game::init()
 
 	sf::View view(RESOLUTION / 2.f, RESOLUTION);
 	m_window->setView(view);
+
+	setupLetterboxView();
 }
 
 void Game::loadTextures()
@@ -102,4 +106,35 @@ void Game::loadTextures()
 	if (!texManager.loadQueuedTextures()) {
 		std::cerr << "Failed to load some textures!" << std::endl;
 	}
+}
+
+void Game::setupLetterboxView()
+{
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+
+	float windowRatio = static_cast<float>(desktop.size.x) / static_cast<float>(desktop.size.y);
+	float gameRatio = static_cast<float>(WINDOW_WIDTH) / static_cast<float>(WINDOW_HEIGHT);
+
+	sf::View view;
+	view.setSize(RESOLUTION);
+	view.setCenter(RESOLUTION / 2.f);
+
+	if (windowRatio < gameRatio) {
+		float viewportWidth = windowRatio / gameRatio;
+		float xOffset = (1.f - viewportWidth) / 2.f;
+		view.setViewport(sf::FloatRect(
+			sf::Vector2f(xOffset, 0.f),
+			sf::Vector2f(viewportWidth, 1.f))
+		);
+	}
+	else {
+		float viewportHeight = gameRatio / windowRatio;
+		float yOffset = (1.f - viewportHeight) / 2.f;
+		view.setViewport(sf::FloatRect(
+			sf::Vector2f(0.f, yOffset),
+			sf::Vector2f(1.f, viewportHeight)
+		));
+	}
+
+	m_window->setView(view);
 }

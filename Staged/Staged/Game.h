@@ -30,6 +30,7 @@ private:
 	void init();
 
 	void loadTextures();
+	void setupLetterboxView();
 
 	std::shared_ptr<sf::RenderWindow> m_window;
 };

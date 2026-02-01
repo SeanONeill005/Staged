@@ -138,3 +138,9 @@ void BaseScene::renderTransition()
         m_window->draw(m_rightCurtain);
     }
 }
+
+sf::Vector2f BaseScene::getMousePosition() const
+{
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(*m_window);
+    return m_window->mapPixelToCoords(pixelPos);
+}

@@ -43,12 +43,6 @@ private:
 	sf::Text scoreText{ scoreFont };
 	sf::Text missedText{ scoreFont };
 
-	// Game Objects
-	Mask mask = "Blue";
-	Mask maskRed = "Red";
-	Stage stage = "Purple";
-	std::vector<Mask> maskList = { mask, maskRed };
-
 	// Timers
 	sf::Clock gameTimer;
 	sf::Clock animationTimer;
